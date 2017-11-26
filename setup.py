@@ -3,7 +3,7 @@
 from setuptools import setup
 from setuptools import find_packages
 
-__version__ = '0.0.1'
+__version__ = '1.0.0'
 
 setup(
     name = 'statstester',
@@ -16,6 +16,6 @@ setup(
     url = 'https://github.com/montblanc18',
     license = 'MIT',
     packages = find_packages(exclude = ('tests', 'docs')),
-    install_requires = ['setuptools', 'scipy','numpy'],
+    install_requires = ['setuptools', 'os', 'pandas', 'scipy','numpy'],
     test_suite = 'tests'
 )
