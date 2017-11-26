@@ -117,6 +117,7 @@ def two_line_t_test(data0, data1, alpha = 0.05):
     ['HC0_se', 'HC1_se', 'HC2_se', 'HC3_se', '_HCCM', '__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_cache', '_data_attr', '_get_robustcov_results', '_is_nested', '_wexog_singular_values', 'aic', 'bic', 'bse', 'centered_tss', 'compare_f_test', 'compare_lm_test', 'compare_lr_test', 'condition_number', 'conf_int', 'conf_int_el', 'cov_HC0', 'cov_HC1', 'cov_HC2', 'cov_HC3', 'cov_kwds', 'cov_params', 'cov_type', 'df_model', 'df_resid', 'diagn', 'eigenvals', 'el_test', 'ess', 'f_pvalue', 'f_test', 'fittedvalues', 'fvalue', 'get_influence', 'get_prediction', 'get_robustcov_results', 'initialize', 'k_constant', 'llf', 'load', 'model', 'mse_model', 'mse_resid', 'mse_total', 'nobs', 'normalized_cov_params', 'outlier_test', 'params', 'predict', 'pvalues', 'remove_data', 'resid', 'resid_pearson', 'rsquared', 'rsquared_adj', 'save', 'scale', 'ssr', 'summary', 'summary2', 't_test', 'tvalues', 'uncentered_tss', 'use_t', 'wald_test', 'wald_test_terms', 'wresid']    
     """
 
+    
     x0, y0 = data0
     x1, y1 = data1
     n0 = len(x0)
@@ -132,10 +133,10 @@ def two_line_t_test(data0, data1, alpha = 0.05):
     sb0b1 = s_ * math.sqrt(1 / sxx(x0) + 1 / sxx(x1))
     t_slope = (b0 - b1) / sb0b1 # 自由度(n0 + n1 - 4)のt分布
     tval = tdistribution(n0 + n1 - 4, alpha)
-    if t_slope > tval:
-        print('t値:{} > t:{}より傾きの差は{}で有意。'.format(t_slope, tval, alpha))
+    if abs(t_slope) > tval:
+        print('t値:{}の絶対値 > t:{}より傾きの差は{}で有意。'.format(t_slope, tval, alpha))
     else:
-        print('t値:{} < t:{}より傾きの差は{}で有意ではない。'.format(t_slope, tval, alpha))
+        print('t値:{}の絶対値 < t:{}より傾きの差は{}で有意ではない。'.format(t_slope, tval, alpha))
 
 
     # 切片の差の検定
@@ -144,11 +145,11 @@ def two_line_t_test(data0, data1, alpha = 0.05):
     sa0sa1 = s_ * math.sqrt(sum(x0 ** 2) / (n0 * sxx(x0)) + sum(x1 ** 2) / (n1 * sxx(x1)))
     t_intercept = (a0 - a1) / sa0sa1
     tval = tdistribution(n0 + n1 - 4, alpha)
-    if t_intercept > tval:
-        print('t値:{} > t:{}より傾きの差は{}で有意。'.format(t_intercept, tval, alpha))
+    if abs(t_intercept) > tval:
+        print('t値:{}の絶対値 > t:{}より切片の差は{}で有意。'.format(t_intercept, tval, alpha))
     else:
-        print('t値:{} < t:{}より傾きの差は{}で有意ではない。'.format(t_intercept, tval, alpha))
-    
+        print('t値:{}の絶対値 < t:{}より切片の差は{}で有意ではない。'.format(t_intercept, tval, alpha))
+
 
 def t_test(x, y, equal_var = True):
     """ t検定を行う。

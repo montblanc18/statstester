@@ -1,6 +1,7 @@
 MANIFEST.in
 README.rst
 setup.py
+input/data/tdistribution.csv
 sample/__init__.py
 sample/core.py
 sample/helpers.py

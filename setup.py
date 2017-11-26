@@ -15,7 +15,10 @@ setup(
     author = 'Shin Kurita',
     url = 'https://github.com/montblanc18',
     license = 'MIT',
+    install_package_data = True,
+    package_dir = {'input':'input',},
     packages = find_packages(exclude = ('tests', 'docs')),
-    install_requires = ['setuptools', 'os', 'pandas', 'scipy','numpy'],
+    package_data = {'input':['input'],},
+    install_requires = ['setuptools', 'pandas', 'scipy','numpy'],
     test_suite = 'tests'
 )
