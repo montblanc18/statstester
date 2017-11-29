@@ -8,9 +8,10 @@ __version__ = '1.0.0'
 setup(
     name = 'statstester',
     version = __version__,
-    description = 'Supporting t-test & f-test.',
+    description = 'Supporting Statistical Test.',
     long_description = '''
-    statstester help you to perform t-test & f-test.
+    StatsTester helps you to perform Statistical Test.
+    This package includes t-test & f-test.
     ''',
     author = 'Shin Kurita',
     url = 'https://github.com/montblanc18',
