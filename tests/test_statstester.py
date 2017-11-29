@@ -19,9 +19,7 @@ class TestStats(unittest.TestCase):
         model = sm.OLS(y, X)
         results = model.fit()
         b, a = results.params
-        # print(a, b)
         _standard_deviation_by_least_squared_method = math.sqrt(sum((y[i] - (a * x[i] + b))**2 for i in range(len(x))) / (len(x)-2))
-        # 以下、計算方法で僅かなズレが生じる模様？？？なので、AlmostEqualで7桁一致で比較する。
         self.assertAlmostEqual(a, calc_slope(x, y), places = 7)
         self.assertAlmostEqual(b, calc_intercept(x, y), places = 7)
         self.assertAlmostEqual(_standard_deviation_by_least_squared_method, standard_deviation_by_least_squared_method(x, y), places = 7)
@@ -97,7 +95,7 @@ class TestStats(unittest.TestCase):
         
 
     def test_two_line_t_test(self):
-        """ 今後実装予定
+        """ I will write the code below in the near future.
         """
         pass
 

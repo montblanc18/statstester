@@ -1,5 +1,6 @@
 *~
 tests/__pycache__
+statstester/__pycache__
 dist
 build
 statstester.egg-info
