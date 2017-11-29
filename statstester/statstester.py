@@ -31,7 +31,7 @@ def sigma_calc_intercept(x, y):
     return standard_deviation_by_least_squared_method(x, y) * math.sqrt(sum(x**2) / (len(n) * sxx(x)))
 
 
-def coefficient_of_determination(x, y):
+def coefficient_of_determination(x, y): 
     r = correlation_coefficient(x, y)
     return r**2
 
@@ -77,6 +77,7 @@ def sxx(x):
     return sum_of_squared_deviations(x)
 
 def tdistribution(nsample, alpha):
+    '''
     df = pd.read_csv(os.path.join(os.path.dirname(__file__), '../input/data/tdistribution.csv'))
     if alpha == 0.1:
         key_alpha = '0.1'
@@ -87,6 +88,8 @@ def tdistribution(nsample, alpha):
     else:
         return 'Alpha is Error!!!'
     return df[key_alpha][nsample]
+    '''
+    return stats.t.isf(alpha/2.0, nsample)
     
 
 def two_line_t_test(data0, data1, alpha = 0.05):

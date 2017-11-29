@@ -86,9 +86,14 @@ class TestStats(unittest.TestCase):
         self.assertEqual(_sxx, sxx(x))
 
     def test_tdistribution(self):
-        self.assertEqual(2.2753084029999999, tdistribution(100, 0.025))
-        self.assertEqual(1.9837310030000002, tdistribution(100, 0.05))
-        self.assertEqual(1.6600806299999999, tdistribution(100, 0.1))
+        '''
+        Using `assertAlmostEqual` because these values are calculated 
+        by the numerical integration and this might include some errors.
+        The values which are prepared for test are caluculated by Excel.
+        '''
+        self.assertAlmostEqual(2.2753084029999999, tdistribution(100, 0.025), places = 3)
+        self.assertAlmostEqual(1.9837310030000002, tdistribution(100, 0.05), places = 3)
+        self.assertAlmostEqual(1.6600806299999999, tdistribution(100, 0.1), places = 3)
         
 
     def test_two_line_t_test(self):
