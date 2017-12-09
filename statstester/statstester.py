@@ -6,6 +6,7 @@ import os
 import numpy as np
 import math
 from scipy import stats
+import matplotlib.pyplot as plt
 
 
 def standard_deviation_by_least_squared_method(x, y):
@@ -110,7 +111,7 @@ def two_line_t_test(data0, data1, alpha = 0.05):
     a1 = calc_intercept(x1, y1)
     sa0sa1 = s_ * math.sqrt(sum(x0 ** 2) / (n0 * sxx(x0)) + sum(x1 ** 2) / (n1 * sxx(x1)))
     t_intercept = (a0 - a1) / sa0sa1
-    tval = tdistribution(n0 + n1 - 4, alpha)
+    tval = t_statistic(n0 + n1 - 4, alpha)
     if abs(t_intercept) > tval:
         print('[ Intercept ] | t value:{} | > t_inv value:{} means that it is significant by {}.'.format(t_intercept, tval, alpha))
     else:
@@ -129,5 +130,32 @@ def f_test(x, y):
     """
     f = np.var(x)/np.var(y)
     return stats.f.cdf(f, len(x)-1, len(y)-1)
-    
 
+
+def quick_look_two_data(data0, data1, saveflag = False, savename = None):
+    ''' Show the scatter plot w/ 2 datasets as quick look.
+    data 0: [x0, y0]. x0 and y0 are numpy list.
+    data 1: [x1, y1]. x1 and y1 are numpy list.
+    saveflag: If you set True to this parmeter and filename to savename, this function save the graph as savename.
+    '''
+    x0, y0 = data0
+    x1, y1 = data1
+    plt.figure(figsize = (10, 10))
+    plt.scatter(x0, y0, color = 'r')
+    plt.scatter(x1, y1, color = 'b')
+    slope0 = calc_slope(x0, y0)
+    intercept0 = calc_intercept(x0, y0)
+    slope1 = calc_slope(x1, y1)
+    intercept1 = calc_intercept(x1, y1)
+    plt.plot([min(x0), max(x0)], [slope0 * min(x0) + intercept0, slope0 * max(x0) + intercept0], color = 'r', linewidth = 2)
+    plt.plot([min(x1), max(x1)], [slope1 * min(x1) + intercept1, slope1 * max(x1) + intercept1], color = 'b', linewidth = 2)
+
+    plt.xlabel('x axis')
+    plt.ylabel('y axis')
+
+    two_line_t_test(data0, data1)
+    
+    if saveflag:
+        plt.savefig(savename)
+    plt.show()
+    
