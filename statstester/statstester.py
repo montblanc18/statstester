@@ -5,7 +5,6 @@
 import os
 import numpy as np
 import math
-import pandas as pd
 from scipy import stats
 
 
@@ -68,27 +67,22 @@ def syy(y):
 def sxx(x):
     return sum_of_squared_deviations(x)
 
-def tdistribution(nsample, alpha):
-    # The code which are written below will be deleted.
-    ''' 
-    df = pd.read_csv(os.path.join(os.path.dirname(__file__), '../input/data/tdistribution.csv'))
-    if alpha == 0.1:
-        key_alpha = '0.1'
-    elif alpha == 0.05:
-        key_alpha = '0.05'
-    elif alpha == 0.025:
-        key_alpha = '0.025'
-    else:
-        return 'Alpha is Error!!!'
-    return df[key_alpha][nsample]
+def t_statistic(nsample, p_value):
+    ''' Calculate t_statistic and check significant of not.
+    nsample: numpy list
+    p-value: two-tailed p-value
+    [Return]
+    t_statistic:
     '''
-    return stats.t.isf(alpha/2.0, nsample)
+    return stats.t.isf(p_value, nsample)
     
 
 def two_line_t_test(data0, data1, alpha = 0.05):
     """  Checking the relation between two data using t-test/
     x0, y0: data 0
     x1, y1: data 1
+    alpha: two-tailed p-value. If you want to perform one-sided test,
+           please apply doubled p-value to alpha.
     """
     x0, y0 = data0
     x1, y1 = data1
@@ -104,7 +98,7 @@ def two_line_t_test(data0, data1, alpha = 0.05):
     b1 = calc_slope(x1, y1)
     sb0b1 = s_ * math.sqrt(1 / sxx(x0) + 1 / sxx(x1))
     t_slope = (b0 - b1) / sb0b1
-    tval = tdistribution(n0 + n1 - 4, alpha)
+    tval = t_statistic(n0 + n1 - 4, alpha)
     if abs(t_slope) > tval:
         print('[ Slope ] | t value:{} | > t_inv value:{} means that it is significant by {}.'.format(t_slope, tval, alpha))
     else:
