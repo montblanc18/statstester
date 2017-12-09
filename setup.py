@@ -19,6 +19,6 @@ setup(
     package_dir = {'input':'input',},
     packages = find_packages(exclude = ('tests', 'docs')),
     package_data = {'input':['input'],},
-    install_requires = ['setuptools', 'pandas', 'scipy','numpy'],
+    install_requires = ['setuptools', 'scipy','numpy'],
     test_suite = 'tests'
 )
