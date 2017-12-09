@@ -52,7 +52,7 @@ f:0.6571863043674027
 [ Slope ] | t value:1.9747106131647987 | > t_inv value:1.6526650592326861 means that it is significant by 0.05.
 [ Intercept ] | t value:-1.7192242957174544 | > t_inv value:1.6526650592326861 means that it is significant by 0.05.
 ```
-![output of the quick_look_two_data](https://github.com/montblanc18/statstester/blob/master/img/quick_look_two_data.png, "quick_look_two_data")
+![output of the quick_look_two_data](https://github.com/montblanc18/statstester/blob/master/img/quick_look_two_data.png "quick_look_two_data")
 
 # License Information
 See the file `LICENSE` for information on the history of this software.
